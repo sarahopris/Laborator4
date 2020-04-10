@@ -43,4 +43,7 @@ public:
 
 	void uremove(Medikament d);
 
+	void update(Medikament d);
+
+	void u_update(Medikament d);
 };

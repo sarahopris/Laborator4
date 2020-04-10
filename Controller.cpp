@@ -172,3 +172,57 @@ void Controller::uremove(Medikament d)
 	a.d = d;
 	history_redo.push_back(a);
 }
+
+void Controller::update(Medikament d)
+{
+	Medikament mm;
+	if (search(d) == false)
+	{
+		add(d);
+	}
+
+	else
+	{
+		for (int i = 0; i < rep.len; i++)
+		{
+			if ((d.getkonzentration() == rep.farm[i].getkonzentration()) and (d.getname() == rep.farm[i].getname()))
+			{
+				mm = rep.farm[i];
+
+				std::string w;
+
+				//update the price
+				cout << "Current price of the drug is: " << d.getpreis() << "\n Do you want to update it? (y/n)";
+				cin >> w;
+				if (w == "y")
+				{
+					float x;
+					cout << "The new price is: ";
+					cin >> x;
+					rep.farm[i].setpreis(x);
+				}
+
+				//update menge
+				cout << "Current amount of the drug is: " << d.getmenge() << "\n Do you want to update it? (y/n)";
+				cin >> w;
+				if (w == "y")
+				{
+					int x;
+					cout << "The new amount should be: ";
+					cin >> x;
+					rep.farm[i].setmenge(x);
+				}
+
+			}
+		}
+	}
+	action a;
+	a.act = 2;
+	a.d = mm;
+	history_undo.push_back(a);
+}
+
+void Controller::u_update(Medikament d)
+{
+
+}
