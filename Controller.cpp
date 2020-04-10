@@ -246,7 +246,7 @@ void Controller::show(std::string s)
 		rep.show();
 	}
 	else
-	{	//Repo r;
+	{	Repo r;
 		for (int i = 0; i < rep.len; i++)
 		{
 			if (rep.farm[i].getname().find(s) == 0)
@@ -254,7 +254,7 @@ void Controller::show(std::string s)
 				rep.farm[i].zeigen();
 			}
 		}
-		//r.show()
+		r.show();
 	}
 }
 

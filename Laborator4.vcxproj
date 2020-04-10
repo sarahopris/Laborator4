@@ -138,12 +138,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="appcoord.cpp" />
     <ClCompile Include="Domain.cpp" />
     <ClCompile Include="Repo.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="appcoord.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Domain.h" />
     <ClInclude Include="Repo.h" />
