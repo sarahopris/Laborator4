@@ -4,5 +4,14 @@
 
 class ui
 {
+public:
+	void Menu();
 
+	void run();
+
+	//constructor
+	ui();
+
+	//destructor
+	~ui();
 };
