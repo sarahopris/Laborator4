@@ -15,6 +15,7 @@ struct action
 
 class Controller
 {
+	friend class ui;
 private:
 	Repo rep;
 	vector<action> history_undo; //istoric de modificari
@@ -46,4 +47,21 @@ public:
 	void update(Medikament d);
 
 	void u_update(Medikament d);
+
+	//shows the listed drugs
+	void show(std::string s);
+
+	void name_sort(); //sort by name
+
+	//zeigt die Medikamente mit einer kleineren Menge als eine gegebene
+	void menge_sort(int menge);
+
+	//sortiert nach Preis
+	void preis_sort();
+
+	//undo die letzte Operation
+	void undo();
+
+	//redo die letzte Operation
+	void redo();
 };

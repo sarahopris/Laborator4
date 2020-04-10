@@ -141,11 +141,13 @@
     <ClCompile Include="Domain.cpp" />
     <ClCompile Include="Repo.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Domain.h" />
     <ClInclude Include="Repo.h" />
+    <ClInclude Include="ui.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

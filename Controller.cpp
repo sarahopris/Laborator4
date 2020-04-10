@@ -224,5 +224,117 @@ void Controller::update(Medikament d)
 
 void Controller::u_update(Medikament d)
 {
+	for (int i = 0; i < rep.len; i++)
+	{
+		if ((d.getkonzentration() == rep.farm[i].getkonzentration()) and (d.getname() == rep.farm[i].getname()))
+		{
+			rep.farm[i].setpreis(d.getpreis());
+			rep.farm[i].setmenge(d.getmenge());
+		}
+}
+	action a;
+	a.act = 3;
+	a.d = d;
+	history_redo.push_back(a);
 
+}
+
+void Controller::show(std::string s)
+{
+	if (s.length() == 0)
+	{
+		rep.show();
+	}
+	else
+	{	//Repo r;
+		for (int i = 0; i < rep.len; i++)
+		{
+			if (rep.farm[i].getname().find(s) == 0)
+			{
+				rep.farm[i].zeigen();
+			}
+		}
+		//r.show()
+	}
+}
+
+void Controller::name_sort()
+{
+	auto relation = [](Medikament a, Medikament b) {return a.getname() < b.getname();  };
+	sort(rep.farm, rep.farm + rep.len, relation);
+
+	for (int i = 0; i < rep.len; i++)
+		rep.farm[i].zeigen();
+}
+void Controller::menge_sort(int menge)
+{
+	if (isempty()== true)
+	{
+		std::cout << "No products!\n";
+	}
+	else
+	{
+		for (int i = 0; i < rep.len; i++)
+		{
+			if (rep.farm[i].getmenge() < menge)
+				rep.farm[i].zeigen();
+		}
+	}
+}
+
+
+void Controller::preis_sort()
+{
+	auto relation = [](Medikament a, Medikament b) {return a.getpreis() < b.getpreis(); };
+	sort(rep.farm, rep.farm + rep.len, relation);
+
+	for (int i = 0; i < rep.len; i++)
+		rep.farm[i].zeigen();
+}
+
+void Controller::undo()
+{
+	if (history_undo.size() != 0)
+	{
+		action med = history_undo.at(history_undo.size() - 1);
+		if (med.act == 1)
+		{
+			uremove(med.d);
+		}
+		else if (med.act == 2)
+		{
+			u_update(med.d);
+		}
+		else {
+			uadd(med.d);
+		}
+		history_undo.pop_back();
+		return;
+	}
+	cout << "Nicht moglich!" << endl;
+}
+
+//redo die letzte Operation
+void Controller::redo()
+{
+	if (history_redo.size() != 0)
+	{
+		action med = history_redo.at(history_redo.size() - 1);
+		if (med.act == 1)
+		{
+			remove(med.d);
+		}
+		else if (med.act == 2)
+		{
+			update(med.d);
+		}
+
+		else {
+			add(med.d);
+		}
+
+		history_undo.pop_back();
+		return;
+	}
+	cout << "Nicht moglich!" << endl;
 }
